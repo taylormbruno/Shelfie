@@ -1,13 +1,16 @@
 // *** Dependencies
 //  =============================================================
+// eslint-disable-next-line no-undef
 var express = require('express');
 
 // Sets up the Express App
 // =============================================================
 var app = express();
+// eslint-disable-next-line no-undef
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
+// eslint-disable-next-line no-undef
 var db = require('./models');
 
 // Sets up the Express app to handle data parsing
@@ -19,7 +22,9 @@ app.use(express.static('public'));
 
 // Routes
 // =============================================================
+// eslint-disable-next-line no-undef
 require('./routes/api-routes.js')(app);
+// eslint-disable-next-line no-undef
 require('./routes/html-routes.js')(app);
 
 // Syncing our database and logging a message to the user upon success
