@@ -11,7 +11,7 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 // eslint-disable-next-line no-undef
-var db = require('./models');
+var db = require('./src/models');
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -23,9 +23,9 @@ app.use(express.static('public'));
 // Routes
 // =============================================================
 // eslint-disable-next-line no-undef
-require('./routes/api-routes.js')(app);
+require('./src/routes/api-routes')(app);
 // eslint-disable-next-line no-undef
-require('./routes/html-routes.js')(app);
+require('./src/routes/html-routes')(app);
 
 // Syncing our database and logging a message to the user upon success
 // =============================================================
