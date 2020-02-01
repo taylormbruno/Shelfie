@@ -15,13 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Books.associate = function(models) {
-        Books.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // Books.associate = function(models) {
+    //     Books.belongsTo(models.User, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
     return Books;
 };
