@@ -12,17 +12,22 @@ module.exports = function(sequelize, DataTypes) {
         book_shelf: {
             type:DataTypes.STRING,
             allowNull: false
-        }
+        },
+        
+    },{
+        timestamps: false
     }, {
         freezeTableName: true
     });
 
     Books.associate = function(models) {
-        Books.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Books.belongsTo(models.User
+        //     , {
+        //     foreignKey: {
+        //         allowNull: false
+        //     }
+        // }
+        );
     };
 
     return Books;
