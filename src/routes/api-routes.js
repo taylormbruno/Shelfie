@@ -8,15 +8,15 @@ let userID = 5;
 module.exports = function(app) {
     // runs but never ends.
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
-        // db.User.findAll({
-        //     attributes: ['id'],
-        //     where: {
-        //         username: req.body.username
-        //     }
-        // }).then(function(res){
-        //     userID = res;
-        //     console.log(userID);
-        // });
+        db.User.findAll({
+            attributes: ['id'],
+            where: {
+                username: req.body.username
+            }
+        }).then(function(res){
+            userID = res;
+            console.log(userID);
+        });
         res.json(req.user);
     });
     // adds new user successfully
@@ -39,13 +39,13 @@ module.exports = function(app) {
         res.redirect('/');
     });
 
-    // error "Unhandled rejection SequelizeDatabaseError: Unknown column 'UserId' in 'field list'" DUE to FK not adding column for userID
+    // creates a new book 
     app.post('/api/addNewBook', function(req, res) {
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
             book_shelf: 'Unread',
-            UserId: userID
+            userId: userID
         }).then(function(dbBooks) {
             console.log(dbBooks);
             res.json(dbBooks);
