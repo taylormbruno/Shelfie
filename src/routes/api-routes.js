@@ -3,22 +3,23 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID;
+let userID = 5;
 
 module.exports = function(app) {
+    // runs but never ends.
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
-        db.User.findAll({
-            attributes: ['id'],
-            where: {
-                username: req.body.username
-            }
-        }).then(function(res){
-            userID = res;
-            console.log(userID);
-        });
+        // db.User.findAll({
+        //     attributes: ['id'],
+        //     where: {
+        //         username: req.body.username
+        //     }
+        // }).then(function(res){
+        //     userID = res;
+        //     console.log(userID);
+        // });
         res.json(req.user);
     });
-
+    // adds new user successfully
     app.post('/api/signup', function(req, res) {
         db.User.create({
             username: req.body.username,
@@ -31,22 +32,27 @@ module.exports = function(app) {
         });
     });
 
+    // have not figured out how to test with postman
     app.get('/logout', function(req, res) {
         userID = 0;
         req.logout();
         res.redirect('/');
     });
 
+    // error "Unhandled rejection SequelizeDatabaseError: Unknown column 'UserId' in 'field list'" DUE to FK not adding column for userID
     app.post('/api/addNewBook', function(req, res) {
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
-            book_shelf: 'Unread'
+            book_shelf: 'Unread',
+            UserId: userID
         }).then(function(dbBooks) {
+            console.log(dbBooks);
             res.json(dbBooks);
         });
     });
 
+    // all find alls are untested
     app.get('/api/unread', function(req, res) {
         db.Books.findAll({
             where: {
@@ -77,5 +83,9 @@ module.exports = function(app) {
             res.json(dbBooks);
         });
     });
+    // app.put('/api/updateShelf, function(req, res) {
+    // shelf type will be retrieved through req.body
+    // })
 
+    //app.delete('/api/remove:id)
 };
