@@ -40,6 +40,7 @@
     <br>
     <br>
     <!-- /.hero -->
+    {{!-- for handlebars????-------------------------------------------------------}}
     <!-- <section>
     <columns>
         <column>
@@ -52,29 +53,63 @@
             {{/each}}
         </column>
     </columns>
-</section> -->
+</section> ------------------------------------------------------------------------------>
 
-    <div class='section center'>
-        <div class='columns'>
-            <div class='column has-text-center'>
-                <div class='has-text-center'><a href="#"><img src='https://via.placeholder.com/150x200'></a></div>
-                <div class='has-text-center'>Title:</div>
-                <div class='has-text-center'>Author:</div>
-            </div>
-            <div class='column has-text-center'>
-                <div class='has-text-center'><a href="#"><img src='https://via.placeholder.com/150x200'></a></div>
-                <div class='has-text-center'>Title:</div>
-                <div class='has-text-center'>Author:</div>
-            </div>
-            <div class='column has-text-center'>
-                <div class='has-text-center'><a href="#"><img src='https://via.placeholder.com/150x200'></a></div>
-                <div class='has-text-center'>Title:</div>
-                <div class='has-text-center'>Author:</div>
+
+ <!-- Book MODAL -->
+
+    <div class='modal' id='bookModal'>
+        <div class='modal-background'></div>
+        <div class='header'>
+            <button class='modal-close is-large' aria-label='close'></button>
+        </div>
+        <div class='section'>
+            <div class='modal-content'>
+                <div class='section modal-wrap'>
+                    <div class='columns'>
+                        <div class='column'>
+                            <img src='https://via.placeholder.com/300x350'>
+                        </div>
+                        <div class='column'>
+                            Title:
+                            <br>
+                            Author:
+                            <br>
+                            Description:
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
     </div>
+    <!-- book links -->
+    <div class='section center'>
+        <div class='columns'>
+            <div class='column has-text-center'>
+                <!-- THIS WILL DYNAMICALLY DISPLAY EVENTUALLY -->
+                <div class='has-text-center'><img id='bookLink' src='https://via.placeholder.com/150x200'></div>
+                <div class='has-text-center'>Title:</div>
+                <div class='has-text-center'>Author:</div>
+            </div>
+            <!-- <div class='column has-text-center'>
+                <div class='has-text-center'><img src='https://via.placeholder.com/150x200'></div>
+                <div class='has-text-center'>Title:</div>
+                <div class='has-text-center'>Author:</div>
+            </div>
+            <div class='column has-text-center'>
+                <div class='has-text-center'><img src='https://via.placeholder.com/150x200'></div>
+                <div class='has-text-center'>Title:</div>
+                <div class='has-text-center'>Author:</div>
+            </div>
+        </div>
+    </div> -->
+        </div>
 
+        <!-- </div> -->
+
+        <script src='books.js'></script>
 </body>
 
 </html>
