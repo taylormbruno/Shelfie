@@ -1,5 +1,7 @@
-let db = require('../models');
-let passport = require('../config/passport');
+// let User = require('../models/User.js');
+
+const passport = require('../config/passport.js');
+const db = require('../models');
 
 let userID;
 
@@ -8,7 +10,7 @@ module.exports = function(app) {
         db.User.findAll({
             attributes: ['id'],
             where: {
-                username: 'tbruno'
+                username: req.body.username
             }
         }).then(function(res){
             userID = res;
@@ -20,9 +22,10 @@ module.exports = function(app) {
     app.post('/api/signup', function(req, res) {
         db.User.create({
             username: req.body.username,
-            password: req.body.password
-        }).then(function() {
+            password: req.body.password 
+        }).then(function(res) {
             res.redirect(307, '/api/login');
+            console.log(res);
         }).catch(function(err) {
             res.status(401).json(err);
         });

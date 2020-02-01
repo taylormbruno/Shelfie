@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = function(sequelize, DataTypes) {
-    let Books = sequelize.define('books', {
+    let Books = sequelize.define('Books', {
         book_title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -15,13 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    // Books.associate = function(models) {
-    //     Books.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+    Books.associate = function(models) {
+        Books.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     return Books;
 };

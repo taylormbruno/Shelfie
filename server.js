@@ -2,24 +2,31 @@
 //  =============================================================
 // eslint-disable-next-line no-undef
 var express = require('express');
+var passport = require('./src/config/passport');
+
 
 // Sets up the Express App
 // =============================================================
-var app = express();
 // eslint-disable-next-line no-undef
 var PORT = process.env.PORT || 8080;
-
-// Requiring our models for syncing
 // eslint-disable-next-line no-undef
 var db = require('./src/models');
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Static directory
-app.use(express.static('public'));
 
+var app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
+// eslint-disable-next-line no-undef
+// app.use(require('serve-static')(__dirname + '/public'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 // Routes
 // =============================================================
 // eslint-disable-next-line no-undef
@@ -34,3 +41,8 @@ db.sequelize.sync().then(function() {
         console.log('==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
     });
 });
+
+// package json necessary
+// "start": "node server.js",
+//     "lint": "eslint src/**/*.js --quiet",
+//     "test": "npm run lint"
