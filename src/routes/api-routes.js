@@ -8,10 +8,11 @@ module.exports = function(app) {
         db.User.findAll({
             attributes: ['id'],
             where: {
-                username: 'tb'
+                username: 'tbruno'
             }
         }).then(function(res){
             userID = res;
+            console.log(userID);
         });
         res.json(req.user);
     });
