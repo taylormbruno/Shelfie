@@ -1,26 +1,37 @@
 {
   "name": "project2",
   "version": "1.0.0",
-  "description": "project 2",
+  "description": "",
   "main": "server.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "eslint": "^6.8.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1",
+    "serve-static": "^1.14.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src/**/*.js --quiet",
     "test": "npm run lint"
   },
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "mysql": "^2.18.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taylormbruno/project2.git"
   },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.18.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
-    "mysql2": "^1.7.0",
-    "sequelize": "^4.44.3"
-  }
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taylormbruno/project2/issues"
+  },
+  "homepage": "https://github.com/taylormbruno/project2#readme"
 }

@@ -4,8 +4,8 @@ var bcrypt = require('bcryptjs');
 // Creating our User model
 // eslint-disable-next-line no-undef
 module.exports = function(sequelize, DataTypes) {
-    let User = sequelize.define('users', {
-    // The username cannot be null, and must be a proper email before creation
+    let User = sequelize.define('User', {
+    // The username cannot be null, and must be a proper email before creation  
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -18,11 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    // User.associate = function(models) {
-    //     User.hasMany(models.Books, {
-    //         onDelete: 'cascade'
-    //     });
-    // };
+    // for foreign key!!
+    User.associate = function(models) {
+        User.hasMany(models.Books, {
+            onDelete: 'cascade'
+        });
+    };
 
     // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     User.prototype.validPassword = function(password) {
