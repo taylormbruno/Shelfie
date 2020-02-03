@@ -11,7 +11,7 @@ module.exports = function(app) {
         // receives error:
         // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
         res.redirect('/users' + req.user.username);
-        let body = req.body;
+        // let body = req.body;
         let user = req.user;
         userID = user.dataValues.id;
         console.log(userID);

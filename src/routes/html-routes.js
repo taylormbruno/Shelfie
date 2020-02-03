@@ -17,9 +17,4 @@ module.exports=function(app){
         res.send('hello world');
     });
 
-    app.get('/users:user',(req, res) =>{
-        // eslint-disable-next-line no-undef
-        // res.sendFile(path.join(__dirname, '../../public/home.html'));
-        res.send('hello world');
-    });
 };
