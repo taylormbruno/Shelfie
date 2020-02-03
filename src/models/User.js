@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false
     });
 
-    // for foreign key!!
+    // for foreign key
     User.associate = function(models) {
         User.hasMany(models.Books, {
             onDelete: 'cascade'

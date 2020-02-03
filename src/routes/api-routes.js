@@ -1,4 +1,3 @@
-// let User = require('../models/User.js');
 
 const passport = require('../config/passport.js');
 const db = require('../models');
@@ -7,18 +6,18 @@ let userID = 5;
 
 module.exports = function(app) {
     // runs but never ends.
+    // eslint-disable-next-line no-undef
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
-        db.User.findAll({
-            attributes: ['id'],
-            where: {
-                username: req.body.username
-            }
-        }).then(function(res){
-            userID = res;
-            console.log(userID);
-        });
+        // receives error:
+        // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+        res.redirect('/users' + req.user.username);
+        let body = req.body;
+        let user = req.user;
+        userID = user.dataValues.id;
+        console.log(userID);
         res.json(req.user);
     });
+
     // adds new user successfully
     app.post('/api/signup', function(req, res) {
         db.User.create({
@@ -40,6 +39,7 @@ module.exports = function(app) {
     });
 
     // creates a new book 
+    // returns 'created_at' doesn't have a default value
     app.post('/api/addNewBook', function(req, res) {
         db.Books.create({
             book_title: req.body.title,
@@ -52,12 +52,21 @@ module.exports = function(app) {
         });
     });
 
-    // all find alls are untested
+    // unread book shelf finds return empty arrays -- no errors
     app.get('/api/unread', function(req, res) {
         db.Books.findAll({
+            subQuery: false,
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
+            include: [
+                {
+                    model: db.User,
+                    as: 'User', 
+                    where: {id: { UserId: userID }}
+                }
+            ],
             where: {
                 book_shelf: 'Unread',
-                User_id: userID
+                // UserId: userID
             }
         }).then(function(dbBooks) {
             res.json(dbBooks);
@@ -83,9 +92,29 @@ module.exports = function(app) {
             res.json(dbBooks);
         });
     });
-    // app.put('/api/updateShelf, function(req, res) {
-    // shelf type will be retrieved through req.body
-    // })
 
-    //app.delete('/api/remove:id)
+    // works as expected
+    app.put('/api/updateShelf', function(req, res) {
+    // shelf type will be retrieved through req.body
+        db.Books.update(
+            req.body, {
+                where: {
+                    id: req.body.id
+                }
+            }
+        ).then(function(dbShelf) {
+            res.json(dbShelf);
+        });
+    });
+
+    // works as expected
+    app.delete('/api/remove:id', function(req, res) {
+        db.Books.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbDelete){
+            res.json(dbDelete);
+        });
+    });
 };
