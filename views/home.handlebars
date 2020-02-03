@@ -1,5 +1,5 @@
 <!-- .section -->
-<section class='section has-background-light>
+<section class='section'>
         <div class=' container'>
     <div class='columns'>
         <div class='column'>
@@ -8,9 +8,13 @@
         <div class='column center'>
             <!-- FORM HERE -->
             <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
-            <input class='button is-primary is-light' type='submit' value='Submit'></button>
-            <br>
-            <p class='has-text-right'><a href='#'>Advanced Search</a></p>
+            <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
+        </div>
+        <br>
+        <br>
+        <div class="column">
+            <div class="columns has-text-centered" id="bookResults">
+            </div>
         </div>
         <div class='column'>
         </div>
@@ -40,12 +44,12 @@
                     </h1>
                     <br>
                     <ol>
-                            {{#each haveRead}}
-                            <p> {{title}} </p>
-                            <p> {{title}} </p>
-                            <p> {{title}} </p>
-                            {{/each}}
-                        </ol>
+                        {{#each haveRead}}
+                        <p> {{title}} </p>
+                        <p> {{title}} </p>
+                        <p> {{title}} </p>
+                        {{/each}}
+                    </ol>
                 </div>
             </div>
             <div class='column'>
@@ -55,12 +59,12 @@
                     </h1>
                     <br>
                     <ol>
-                            {{#each currently}}
-                            <p> {{title}} </p>
-                            <p> {{title}} </p>
-                            <p> {{title}} </p>
-                            {{/each}}
-                        </ol>
+                        {{#each currently}}
+                        <p> {{title}} </p>
+                        <p> {{title}} </p>
+                        <p> {{title}} </p>
+                        {{/each}}
+                    </ol>
 
                 </div>
             </div>

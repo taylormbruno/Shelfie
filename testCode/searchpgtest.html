@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Shelfie</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css'>
+    <link rel='stylesheet' href='/assets/css/style.css' type='text/css' />
+    <script defer src='https://use.fontawesome.com/releases/v5.3.1/js/all.js'></script>
+    <script src='https://code.jquery.com/jquery.js'></script>
+
+</head>
+<style>
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-wrap {
+        background: white;
+        position: fixed;
+        width: 650px;
+        top: 30%;
+    }
+</style>
+
+<body>
+    <!-- .hero -->
+    <section class='hero has-background-black'>
+        <div class='hero-body'>
+            <div class='container'>
+                <h3 class='subtitle has-text-right has-text-primary'>
+                    Username
+                </h3>
+                <h1 class='title center has-text-light'>
+                    Shelfie
+                </h1>
+                <p class='subtitle center has-text-light'>
+                    A personal library app.
+                </p>
+
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <!-- /.hero -->
+    <!-- .section -->
+    <section class='section'>
+        <div class=' container'>
+            <div class='columns is-centered'>
+                <div class='column is-half center'>
+                    <!-- FORM HERE -->
+                    <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
+                    <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
+                </div>
+                
+            </div>
+            <br>
+            <br>
+            <div class="columns">
+                <div class="column" id="bookDiv">
+                </div>
+            </div>
+            <div class='container'>
+                <div class='columns'>
+                    <div class='column'>
+                        <div class='notification is-primary'>
+                            <h1 class='title is-size-4 center'>
+                                <a href='#'>BOOKS I WANT TO READ</a> </h1>
+                            <br>
+                            <ol>
+                                {{#each toRead}}
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='column'>
+                        <div class='notification is-primary'>
+                            <h1 class='title is-size-4 center'>
+                                <a href='#'>BOOKS I'VE READ</a>
+                            </h1>
+                            <br>
+                            <ol>
+                                {{#each haveRead}}
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='column'>
+                        <div class='notification is-primary'>
+                            <h1 class='title is-size-4 center'>
+                                <a href='#'>BOOKS I'M CURRENTLY READING</a>
+                            </h1>
+                            <br>
+                            <ol>
+                                {{#each currently}}
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                <p> {{title}} </p>
+                                {{/each}}
+                            </ol>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- /.section -->
+    <script src="searchbooks.js"></script>
+</body>
+
+</html>
