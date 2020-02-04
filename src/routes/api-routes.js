@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID = 5;
+let userID;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -24,6 +24,7 @@ module.exports = function(app) {
             password: req.body.password 
         }).then(function(res) {
             // res.redirect('/home');
+            res.json(req);
             console.log(res);
         }).catch(function(err) {
             res.status(401).json(err);
@@ -75,16 +76,9 @@ module.exports = function(app) {
         db.Books.findAll({
             subQuery: false,
             attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
-            include: [
-                {
-                    model: db.User,
-                    as: 'User', 
-                    where: {id: { UserId: userID }}
-                }
-            ],
             where: {
                 book_shelf: 'Unread',
-                // UserId: userID
+                UserId: userID
             }
         }).then(function(dbBooks) {
             res.json(dbBooks);
@@ -93,8 +87,10 @@ module.exports = function(app) {
 
     app.get('/api/current', function(req, res) {
         db.Books.findAll({
-            where: {
-                book_shelf: 'Current'
+            subQuery: false,
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],where: {
+                book_shelf: 'Current',
+                UserId: userID
             }
         }).then(function(dbBooks) {
             res.json(dbBooks);
@@ -103,8 +99,10 @@ module.exports = function(app) {
 
     app.get('/api/read', function(req, res) {
         db.Books.findAll({
-            where: {
-                book_shelf: 'Read'
+            subQuery: false,
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],where: {
+                book_shelf: 'Read',
+                UserId: userID
             }
         }).then(function(dbBooks) {
             res.json(dbBooks);
