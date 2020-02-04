@@ -8,15 +8,13 @@ module.exports = function(app) {
     // runs but never ends.
     // eslint-disable-next-line no-undef
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
-        // receives error:
-        // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-
-        res.redirect('/users' + req.user.username);
-        // let body = req.body;
+        // sets users ID to above variable to be used during session
+        console.log(res);
+        console.log('-----------');
+        console.log(req);
         let user = req.user;
         userID = user.dataValues.id;
-        console.log(userID);
-        return res.json(req.user);
+        res.json(req.user);
     });
 
     // adds new user successfully
@@ -25,7 +23,7 @@ module.exports = function(app) {
             username: req.body.username,
             password: req.body.password 
         }).then(function(res) {
-            res.redirect(307, '/api/login');
+            // res.redirect('/home');
             console.log(res);
         }).catch(function(err) {
             res.status(401).json(err);
@@ -34,9 +32,28 @@ module.exports = function(app) {
 
     // have not figured out how to test with postman
     app.get('/logout', function(req, res) {
+        // resets userID to 0 when logging out
+        console.log(res);
+        console.log('-----------');
+        console.log(req);
         userID = 0;
         req.logout();
-        res.redirect('/');
+        // res.redirect('/');
+    });
+
+    // used to test if user is logged in or not
+    function isAuthenticated(req,res,next){
+        if(req.user)
+            return next();
+        else
+            return res.status(401).json({
+                error: 'User not authenticated'
+            });
+    }
+    app.get('/checkauth', isAuthenticated, function(req, res){
+        res.status(200).json({
+            status: 'Login successful!'
+        });
     });
 
     // creates a new book 
