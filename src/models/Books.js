@@ -19,7 +19,13 @@ module.exports = function(sequelize, DataTypes) {
         createdAt: {
             // if assigned: returns `unrecognized DataType`
             // eslint-disable-next-line no-undef
-            // type: Sequelize.DATE,
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.literal('NOW()')
+        },
+        updatedAt: {
+            // if assigned: returns `unrecognized DataType`
+            // eslint-disable-next-line no-undef
+            type: DataTypes.DATE,
             defaultValue: Sequelize.literal('NOW()')
         }
     },{
@@ -39,7 +45,6 @@ module.exports = function(sequelize, DataTypes) {
         );
         
     };
-
 
     return Books;
 };
