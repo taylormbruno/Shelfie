@@ -56,7 +56,7 @@
                     <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
                     <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
                 </div>
-                
+
             </div>
             <br>
             <br>
@@ -72,9 +72,7 @@
                                 <a href='#'>BOOKS I WANT TO READ</a> </h1>
                             <br>
                             <ol>
-                                {{#each toRead}}
-                                <p> {{title}} </p>
-                                <p> {{title}} </p>
+                                {{#each Unread}}
                                 <p> {{title}} </p>
                                 {{/each}}
                             </ol>
@@ -87,9 +85,7 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each haveRead}}
-                                <p> {{title}} </p>
-                                <p> {{title}} </p>
+                                {{#each Read}}
                                 <p> {{title}} </p>
                                 {{/each}}
                             </ol>
@@ -102,9 +98,7 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each currently}}
-                                <p> {{title}} </p>
-                                <p> {{title}} </p>
+                                {{#each Curent}}
                                 <p> {{title}} </p>
                                 {{/each}}
                             </ol>
