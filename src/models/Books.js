@@ -1,4 +1,6 @@
 // eslint-disable-next-line no-undef
+var Sequelize = require('sequelize');
+
 
 module.exports = function(sequelize, DataTypes) {
     let Books = sequelize.define('Books', {
@@ -13,10 +15,12 @@ module.exports = function(sequelize, DataTypes) {
         book_shelf: {
             type: DataTypes.STRING,
             allowNull: false
-        // },
-        // created_at: {
+        },
+        createdAt: {
             // if assigned: returns `unrecognized DataType`
-        //     defaultValue: DataTypes.NOW
+            // eslint-disable-next-line no-undef
+            // type: Sequelize.DATE,
+            defaultValue: Sequelize.literal('NOW()')
         }
     },{
         timestamps: false

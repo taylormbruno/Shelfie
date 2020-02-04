@@ -17,10 +17,9 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-        freezeTableName: true
-    },
-    {
         timestamps: false
+    }, {
+        freezeTableName: true
     });
 
     // for foreign key
@@ -40,6 +39,8 @@ module.exports = function(sequelize, DataTypes) {
     User.addHook('beforeCreate', function(user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     });
+
+    User.sync();
     
     return User;
 };
