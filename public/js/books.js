@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 var bookID = cover_id;
@@ -21,7 +20,6 @@ window.onclick = function (event) {
         bookModal.style.display = 'none';
     }
 };
-=======
 /* eslint-disable for-direction */
 /* eslint-disable no-undef */
 $(document).ready(function () {
@@ -92,4 +90,3 @@ $(document).ready(function () {
 
 // will need an event listener for add to shelf button
 // if thumbnail doesn't pull up gets an undefined error and won't pull up anything---fix for this?
->>>>>>> 064c027c794559422750f18a34f88be9de8a1f10
