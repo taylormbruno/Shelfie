@@ -23,7 +23,7 @@ app.use(express.static('public'));
 // eslint-disable-next-line no-undef
 // app.use(require('serve-static')(__dirname + '/public'));
 app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('body-parser').urlencoded({ extended: false }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -32,6 +32,7 @@ app.use(passport.session());
 // eslint-disable-next-line no-undef
 require('./src/routes/api-routes')(app);
 // eslint-disable-next-line no-undef
+// throwing error
 // require('./routes/html-routes.js')(app);
 
 // Syncing our database and logging a message to the user upon success
@@ -41,8 +42,3 @@ db.sequelize.sync().then(function() {
         console.log('==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
     });
 });
-
-// package json necessary
-// "start": "node server.js",
-//     "lint": "eslint src/**/*.js --quiet",
-//     "test": "npm run lint"
