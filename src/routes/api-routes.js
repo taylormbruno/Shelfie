@@ -10,12 +10,13 @@ module.exports = function(app) {
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
         // receives error:
         // Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+
         res.redirect('/users' + req.user.username);
         // let body = req.body;
         let user = req.user;
         userID = user.dataValues.id;
         console.log(userID);
-        res.json(req.user);
+        return res.json(req.user);
     });
 
     // adds new user successfully

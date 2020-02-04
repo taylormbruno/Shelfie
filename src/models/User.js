@@ -1,6 +1,8 @@
 // Requiring bcrypt for password hashing. Using the bcryptjs version as the regular bcrypt module sometimes causes errors on Windows machines
 // eslint-disable-next-line no-undef
 var bcrypt = require('bcryptjs');
+var Sequelize = require('sequelize');
+
 // Creating our User model
 // eslint-disable-next-line no-undef
 module.exports = function(sequelize, DataTypes) {
@@ -15,6 +17,16 @@ module.exports = function(sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        createdAt: {
+            // eslint-disable-next-line no-undef
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.literal('NOW()')
+        },
+        updatedAt: {
+            // eslint-disable-next-line no-undef
+            type: DataTypes.DATE,
+            defaultValue: Sequelize.literal('NOW()')
         }
     }, {
         timestamps: false

@@ -17,13 +17,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         createdAt: {
-            // if assigned: returns `unrecognized DataType`
             // eslint-disable-next-line no-undef
             type: DataTypes.DATE,
             defaultValue: Sequelize.literal('NOW()')
         },
         updatedAt: {
-            // if assigned: returns `unrecognized DataType`
             // eslint-disable-next-line no-undef
             type: DataTypes.DATE,
             defaultValue: Sequelize.literal('NOW()')
