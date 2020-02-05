@@ -3,7 +3,7 @@
 // eslint-disable-next-line no-undef
 var express = require('express');
 var passport = require('./src/config/passport');
-var exphbs = require('-handlebars');
+var exphbs = require('express-handlebars');
 
 
 // Sets up the Express App
@@ -12,6 +12,7 @@ var exphbs = require('-handlebars');
 var PORT = process.env.PORT || 8080;
 // eslint-disable-next-line no-undef
 var db = require('./src/models');
+var hbs = require('hbs');
 
 // Sets up the Express app to handle data parsing
 
@@ -29,6 +30,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 // Routes
 // =============================================================
 // eslint-disable-next-line no-undef

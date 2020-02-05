@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID;
+let userID = 2;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -63,7 +63,7 @@ module.exports = function(app) {
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
-            book_shelf: 'Unread',
+            book_shelf: req.body.shelf,
             userId: userID
         }).then(function(dbBooks) {
             console.log(dbBooks);
@@ -88,7 +88,8 @@ module.exports = function(app) {
     app.get('/api/current', function(req, res) {
         db.Books.findAll({
             subQuery: false,
-            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],where: {
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
+            where: {
                 book_shelf: 'Current',
                 UserId: userID
             }
@@ -100,7 +101,8 @@ module.exports = function(app) {
     app.get('/api/read', function(req, res) {
         db.Books.findAll({
             subQuery: false,
-            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],where: {
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
+            where: {
                 book_shelf: 'Read',
                 UserId: userID
             }
@@ -124,13 +126,45 @@ module.exports = function(app) {
     });
 
     // works as expected
-    app.delete('/api/remove:id', function(req, res) {
+    app.delete('/api/remove/:id', function(req, res) {
         db.Books.destroy({
             where: {
-                id: req.params.id
+                book_id: req.params.id
             }
         }).then(function(dbDelete){
             res.json(dbDelete);
+        });
+    });
+
+    // sign up/log in page
+    app.get('/', (req,res) => {
+        res.render('index');
+    });
+
+    //this route needs to go to shelf page
+    app.get('/home',(req, res) =>{
+        db.Books.findAll({
+            subQuery: false,
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
+            where: {
+                UserId: userID
+            }
+        }).then(function(books) {
+            // let cur = [];
+            // let unr = [];
+            // let read = [];
+            // allBooks.forEach(obj => {
+            //     switch (obj.book_shelf) {
+            //     case 'Current': cur.push(obj);
+            //         break;
+            //     case 'Read': read.push(obj);
+            //         break;
+            //     case 'Unread': unr.push(obj);
+            //         break;
+            //     }
+            // });
+            // res.json(allBooks);
+            res.render('home', books);
         });
     });
 };
