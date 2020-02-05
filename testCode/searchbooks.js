@@ -28,29 +28,31 @@ $(document).ready(function () {
                 if ((response.items[i].volumeInfo.imageLinks.smallThumbnail)) {
                     smallThumb = response.items[i].volumeInfo.imageLinks.smallThumbnail;
                 }
-                else { smallThumb = '#';}
+                else { smallThumb = '#'; }
 
 
                 var createImg = $('<img class=bookImg src=' + smallThumb + '>');
                 var bookTitle = response.items[i].volumeInfo.title;
                 var bookAuthor = response.items[i].volumeInfo.authors[0];
                 var bookDesc = response.items[i].volumeInfo.description;
-                var createRadioBtns = $(`<div class='control'>
-                <label class='radio'>
-                  <input data-id='`+ i + `' type='radio' name='Read'>
-                  <strong>Have Read</strong>
-                </label>
-                <label class='radio'>
-                  <input data-id='`+ i + `' type='radio' name='Unread'>
-                  <strong>Want To Read</strong>
-                </label>
-                <label class='radio'>
-                  <input data-id='`+ i + `'type='radio' name='Currently'>
-                  <strong>Currently Reading</strong>
-                </label>
-              </div>`);
+                var id = response.items[i].id;
+                // TAKE OUT RADIO BUTTONS FOR NOW, BOOK GOES STRAIGHT TO UNREAD
+                //     var createRadioBtns = $(`<div class='control'>
+                //     <label class='radio'>
+                //       <input data-id='`+ i + `' type='radio' name='Read'>
+                //       <strong>Have Read</strong>
+                //     </label>
+                //     <label class='radio'>
+                //       <input data-id='`+ i + `' type='radio' name='Unread'>
+                //       <strong>Want To Read</strong>
+                //     </label>
+                //     <label class='radio'>
+                //       <input data-id='`+ i + `'type='radio' name='Currently'>
+                //       <strong>Currently Reading</strong>
+                //     </label>
+                //   </div>`);
                 // may have to create individual ids if  it's going to save that info into db?
-                var createSaveBtn = $('<button data-id="' + i + '" class="saveBtn">Add to Shelf</button>');
+                var createSaveBtn = $('<button data-id="' + id + '" class="saveBtn">Add to Shelf</button>');
 
                 console.log(bookTitle);
                 console.log(bookAuthor);
@@ -58,11 +60,12 @@ $(document).ready(function () {
 
                 $('#bookDiv').addClass('has-background-light');
                 $('#bookDiv').append(createImg);
-                $('#bookDiv').append(createRadioBtns);
+                $('#bookDiv').append('<br>');
+                // $('#bookDiv').append(createRadioBtns);
                 $('#bookDiv').append(createSaveBtn);
                 $('#bookDiv').append('<br>');
                 $('.saveBtn').addClass('button is-primary');
-                $('#bookDiv').append('<strong>Title:</strong> <span data-id="' + i + '> ' + bookTitle + '</span><br>');
+                $('#bookDiv').append('<strong>Title:</strong> <span data-id="' + id + '> ' + bookTitle + '</span><br>');
                 $('#bookDiv').append('<strong>Author:</strong> ' + bookAuthor + '<br>');
                 $('#bookDiv').append('<strong>Description:</strong> ' + bookDesc + '<br>');
                 $('#bookDiv').append('<br><br>');
@@ -72,17 +75,25 @@ $(document).ready(function () {
 
 
     });
-    // add book to shelf
-    // Nothing firing
-    $(document).click('.saveBtn',function () {
-        console.log('boop');
-        // event.preventDefault();
-        console.log('here');
-        var dataID = this.attr('data-id');
+    $(document).on('click', '.saveBtn', function () {
+        event.preventDefault();
+        var dataID = $(this).attr('data-id');
+        var dataTitle = $(this).attr('data-title');
+        console.log(dataTitle);
         console.log(dataID);
+        let newBook = {
+            book_title: dataTitle,
+            book_id: dataID,
+            book_shelf: 'Unread'
+        };
+        $.ajax('/api/addNewBook', {
+            type: 'POST',
+            data: newBook
+        }).then(
+            function () {
+                console.log(`Created new book ${newBook}`);
+                location.reload();
+            }
+        );
     });
 });
-
-
-// will need an event listener for add to shelf button
-// if thumbnail doesn't pull up gets an undefined error and won't pull up anything---fix for this?
