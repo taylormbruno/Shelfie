@@ -28,7 +28,7 @@ $(document).ready(function () {
                 if ((response.items[i].volumeInfo.imageLinks.smallThumbnail)) {
                     smallThumb = response.items[i].volumeInfo.imageLinks.smallThumbnail;
                 }
-                else { smallThumb = '#' }
+                else { smallThumb = '#';}
 
 
                 var createImg = $('<img class=bookImg src=' + smallThumb + '>');
@@ -74,7 +74,7 @@ $(document).ready(function () {
     });
     // add book to shelf
     // Nothing firing
-    $('.saveBtn').click(function () {
+    $(document).click('.saveBtn',function () {
         console.log('boop');
         // event.preventDefault();
         console.log('here');
