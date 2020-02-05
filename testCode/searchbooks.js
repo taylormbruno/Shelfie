@@ -1,8 +1,15 @@
 /* eslint-disable for-direction */
 /* eslint-disable no-undef */
 $(document).ready(function () {
-
     // eslint-disable-next-line no-undef
+    $.ajax({
+        url: 'https://books.google.com/ebooks?id=id=tcSMCwAAQBAJ&dq=holmes&as_brr=4&source=webstore_bookcard',
+        method: 'GET',
+        contentType: 'application/json'
+    }).then(function(response){
+        console.log(response);
+    });
+
     $('#searchBtn').click(function () {
         console.log('click');
         var searchInput = $('#searchBar').val().trim();
@@ -59,10 +66,7 @@ $(document).ready(function () {
                 $('#bookDiv').append('<strong>Description:</strong> ' + bookDesc + '<br>');
                 $('#bookDiv').append('<br><br>');
             }
-
         });
-
-
     });
 });
 

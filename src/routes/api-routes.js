@@ -14,7 +14,6 @@ module.exports = function(app) {
         console.log(req);
         let user = req.user;
         userID = user.dataValues.id;
-        // res.json(req.user.id);
         res.redirect('/home/' + userID);
     });
 
@@ -24,9 +23,7 @@ module.exports = function(app) {
             username: req.body.username,
             password: req.body.password 
         }).then(function(res) {
-            // res.redirect('/home');
-            res.json(req);
-            console.log(res);
+            res.redirect('/login');
         }).catch(function(err) {
             res.status(401).json(err);
         });
@@ -40,7 +37,7 @@ module.exports = function(app) {
         console.log(req);
         userID = 0;
         req.logout();
-        res.redirect('/');
+        res.redirect('/login');
     });
 
     // used to test if user is logged in or not

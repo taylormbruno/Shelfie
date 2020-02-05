@@ -2,16 +2,24 @@
 // var path = require('path');
 const db = require('../models');
 
-
+let userName;
 module.exports=function(app){
 
     // this route needs to go to signup/sign in page
     app.get('/', (req,res) => {
         res.render('index');
     });
-
+   
     //this route needs to go to shelf page
     app.get('/home/:id',(req, res) =>{
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then((us) => {
+            userName = us.username; 
+            console.log('USER: ', userName);
+        });
         db.Books.findAll({
             subQuery: false,
             attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
@@ -34,6 +42,7 @@ module.exports=function(app){
                 }
             });
             let hbsBooks = {
+                Username: userName,
                 Current: cur,
                 Read: read,
                 Unread: unr
