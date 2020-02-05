@@ -4,7 +4,7 @@
         <div class='hero-body'>
             <div class='container'>
                 <h3 class='subtitle has-text-right has-text-primary'>
-                    Username
+                    {{Username}}
                 </h3>
                 <h1 class='title center has-text-light'>
                     Shelfie
@@ -44,10 +44,8 @@
                                 <a href='#'>BOOKS I WANT TO READ</a> </h1>
                             <br>
                             <ol>
-                                {{#each Books}}
-                                {{!-- {{#ifEquals book_shelf "Unread"}} --}}
-                                <p data-id={{book_id}}> {{book_title}} </pdata-id={{book_id}}>
-                                {{!-- {{/ifEquals}} --}}
+                                {{#each Unread}}
+                                    <p data-id={{book_id}}> {{book_title}} </p>
                                 {{/each}}
                             </ol>
                         </div>
@@ -59,11 +57,14 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each Books}}
-                                {{!-- {{#ifEquals book_shelf "Read"}} --}}
-                                <p data-id={{book_id}}> {{book_title}} </p>
-                                {{!-- {{/ifEquals}} --}}
+                                {{#each Read}}
+                                    <p data-id={{book_id}}> {{book_title}} </p>
                                 {{/each}}
+                                {{!-- {{#each Books}}
+                                {{!-- {{#ifEquals book_shelf "Read"}} --}}
+                                {{!-- <p data-id={{book_id}}> {{book_title}} </p> --}}
+                                {{!-- {{/ifEquals}} --}}
+                                {{!-- {{/each}}  --}}
                             </ol>
                         </div>
                     </div>
@@ -74,11 +75,14 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each Books}}
-                                {{!-- {{#ifEquals book_shelf "Current"}} --}}
-                                <p data-id={{book_id}}> {{book_title}} </p>
-                                {{!-- {{/ifEquals}} --}}
+                                {{#each Current}}
+                                    <p data-id={{book_id}}> {{book_title}} </p>
                                 {{/each}}
+                                {{!-- {{#each Books}}
+                                {{!-- {{#ifEquals book_shelf "Current"}} --}}
+                                {{!-- <p data-id={{book_id}}> {{book_title}} </p> --}}
+                                {{!-- {{/ifEquals}} --}}
+                                {{!-- {{/each}} --}}
                             </ol>
 
                         </div>
