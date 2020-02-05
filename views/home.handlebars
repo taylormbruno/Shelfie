@@ -46,7 +46,7 @@
                             <ol>
                                 {{#each Books}}
                                 {{!-- {{#ifEquals book_shelf "Unread"}} --}}
-                                <p> {{book_title}} </p>
+                                <p data-id={{book_id}}> {{book_title}} </pdata-id={{book_id}}>
                                 {{!-- {{/ifEquals}} --}}
                                 {{/each}}
                             </ol>
@@ -76,7 +76,7 @@
                             <ol>
                                 {{#each Books}}
                                 {{!-- {{#ifEquals book_shelf "Current"}} --}}
-                                <p> {{book_title}} </p>
+                                <p data-id={{book_id}}> {{book_title}} </p>
                                 {{!-- {{/ifEquals}} --}}
                                 {{/each}}
                             </ol>
