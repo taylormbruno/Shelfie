@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID;
+let userID = 2;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -133,6 +133,38 @@ module.exports = function(app) {
             }
         }).then(function(dbDelete){
             res.json(dbDelete);
+        });
+    });
+
+    // sign up/log in page
+    app.get('/', (req,res) => {
+        res.render('index');
+    });
+
+    //this route needs to go to shelf page
+    app.get('/home',(req, res) =>{
+        db.Books.findAll({
+            subQuery: false,
+            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
+            where: {
+                UserId: userID
+            }
+        }).then(function(books) {
+            // let cur = [];
+            // let unr = [];
+            // let read = [];
+            // allBooks.forEach(obj => {
+            //     switch (obj.book_shelf) {
+            //     case 'Current': cur.push(obj);
+            //         break;
+            //     case 'Read': read.push(obj);
+            //         break;
+            //     case 'Unread': unr.push(obj);
+            //         break;
+            //     }
+            // });
+            // res.json(allBooks);
+            res.render('home', books);
         });
     });
 };

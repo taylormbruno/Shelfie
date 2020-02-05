@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang='en'>
 
-<head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Shelfie</title>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css'>
-    <link rel='stylesheet' href='../public/css/style.css' type='text/css' />
-    <script defer src='https://use.fontawesome.com/releases/v5.3.1/js/all.js'></script>
-    <script src='https://code.jquery.com/jquery.js'></script>
-
-</head>
-<style>
- </style>
-
-<body>
     <!-- .hero -->
     <section class='hero has-background-black'>
         <div class='hero-body'>
@@ -60,8 +44,10 @@
                                 <a href='#'>BOOKS I WANT TO READ</a> </h1>
                             <br>
                             <ol>
-                                {{#each Unread}}
-                                <p> {{title}} </p>
+                                {{#each Books}}
+                                {{!-- {{#ifEquals book_shelf "Unread"}} --}}
+                                <p data-id={{book_id}}> {{book_title}} </pdata-id={{book_id}}>
+                                {{!-- {{/ifEquals}} --}}
                                 {{/each}}
                             </ol>
                         </div>
@@ -73,8 +59,10 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each Read}}
-                                <p> {{title}} </p>
+                                {{#each Books}}
+                                {{!-- {{#ifEquals book_shelf "Read"}} --}}
+                                <p data-id={{book_id}}> {{book_title}} </p>
+                                {{!-- {{/ifEquals}} --}}
                                 {{/each}}
                             </ol>
                         </div>
@@ -86,8 +74,10 @@
                             </h1>
                             <br>
                             <ol>
-                                {{#each Current}}
-                                <p> {{title}} </p>
+                                {{#each Books}}
+                                {{!-- {{#ifEquals book_shelf "Current"}} --}}
+                                <p data-id={{book_id}}> {{book_title}} </p>
+                                {{!-- {{/ifEquals}} --}}
                                 {{/each}}
                             </ol>
 
@@ -97,7 +87,3 @@
             </div>
     </section>
     <!-- /.section -->
-    <script src="../public/js/books.js"></script>
-</body>
-
-</html>
