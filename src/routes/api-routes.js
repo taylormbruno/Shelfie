@@ -14,7 +14,8 @@ module.exports = function(app) {
         console.log(req);
         let user = req.user;
         userID = user.dataValues.id;
-        res.json(req.user);
+        // res.json(req.user.id);
+        res.redirect('/home/' + userID);
     });
 
     // adds new user successfully
@@ -39,7 +40,7 @@ module.exports = function(app) {
         console.log(req);
         userID = 0;
         req.logout();
-        // res.redirect('/');
+        res.redirect('/');
     });
 
     // used to test if user is logged in or not
@@ -134,37 +135,5 @@ module.exports = function(app) {
         }).then(function(dbDelete){
             res.json(dbDelete);
         });
-    });
-
-    // sign up/log in page
-    app.get('/', (req,res) => {
-        res.render('index');
-    });
-
-    //this route needs to go to shelf page
-    app.get('/home',(req, res) =>{
-        db.Books.findAll({
-            subQuery: false,
-            attributes: ['id', 'book_title', 'book_id', 'book_shelf'],
-            where: {
-                UserId: userID
-            }
-        }).then(function(books) {
-            // let cur = [];
-            // let unr = [];
-            // let read = [];
-            // allBooks.forEach(obj => {
-            //     switch (obj.book_shelf) {
-            //     case 'Current': cur.push(obj);
-            //         break;
-            //     case 'Read': read.push(obj);
-            //         break;
-            //     case 'Unread': unr.push(obj);
-            //         break;
-            //     }
-            // });
-            // res.json(allBooks);
-            res.render('home', books);
-        });
-    });
+    });  
 };
