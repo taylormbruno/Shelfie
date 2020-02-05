@@ -3,7 +3,7 @@
 // eslint-disable-next-line no-undef
 var express = require('express');
 var passport = require('./src/config/passport');
-var exphbs = require('-handlebars');
+var exphbs = require('express-handlebars');
 
 
 // Sets up the Express App
@@ -29,6 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
 // Routes
 // =============================================================
 // eslint-disable-next-line no-undef
