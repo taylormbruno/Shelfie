@@ -40,7 +40,7 @@ module.exports = function(app) {
         console.log(req);
         userID = 0;
         req.logout();
-        res.redirect('/login');
+        res.redirect('/');
     });
 
     // used to test if user is logged in or not
