@@ -2,16 +2,22 @@
     <!-- .hero -->
     <section class='hero has-background-black'>
         <div class='hero-body'>
-            <div class='container'>
-                <h3 class='subtitle has-text-right has-text-primary'>
-                    {{Username}}
-                </h3>
-                <h1 class='title center has-text-light'>
+           <div class='container'>
+                <div class='has-text-right'>
+                    <h3 class='subtitle has-text-right has-text-primary'>
+                        {{Username}}
+                    </h3>
+                    <button class='button is-small is-primary' id='logoutBtn'>Logout</button>
+                </div>
+                              
+                <span class='has-text-centered'>
+                <h1 class='title has-text-light'>
                     Shelfie
                 </h1>
-                <p class='subtitle center has-text-light'>
+                <p class='subtitle has-text-centered has-text-light'>
                     A personal library app.
                 </p>
+            </span>
 
             </div>
         </div>
@@ -40,7 +46,6 @@
                 <div class='columns'>
                     <div class='column'>
                         <div class='notification is-primary'>
-                            <h1 class='title is-size-4 center'>
                                 <a href='#'>BOOKS I WANT TO READ</a> </h1>
                             <br>
                             <ol>
@@ -81,3 +86,5 @@
             </div>
     </section>
     <!-- /.section -->
+<script type="text/javascript" src="js/members.js"></script>
+    <script src="../public/js/books.js"></script>
