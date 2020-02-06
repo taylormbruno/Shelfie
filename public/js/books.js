@@ -29,7 +29,7 @@ $(document).ready(function () {
         var bookDesc = response.items[i].volumeInfo.description;
         var id = response.items[i].id;
         
-        var createSaveBtn = $('<button data-id="' + id + '" class="saveBtn">Add to Shelf</button>');
+        var createSaveBtn = $('<button data-title="'+ bookTitle + '"data-id="' + id + '" class="saveBtn">Add to Shelf</button>');
        
         console.log(id)
         console.log(bookTitle);
@@ -58,8 +58,8 @@ $(document).on('click', '.saveBtn',function () {
   event.preventDefault();
   var dataID = $(this).attr('data-id');
   var dataTitle = $(this).attr('data-title');
-  console.log(dataTitle);
-  console.log(dataID);
+  console.log("dataTitle " + dataTitle);
+  console.log("dataID"+ dataID);
   let newBook = {
       book_title: dataTitle,
       book_id: dataID,
