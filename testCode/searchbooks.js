@@ -97,3 +97,26 @@ $(document).ready(function () {
         );
     });
 });
+
+$(document).on('click', '.changeToRead', function() {
+    var id = $(this).data("id");
+    var newDevoured = $(this).data("newDevoured");
+
+    var newDevouredState = {
+        devoured: 1
+    };
+
+    // Send the PUT request.
+    // do i need to add +id to end of update shelf?
+    $.ajax("api/updateShelf", {
+        type: "PUT",
+        data: newDevouredState
+    }).then(
+        function () {
+            console.log("changed devoured to", newDevoured);
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+    console.log("update", newDevouredState);
+});
