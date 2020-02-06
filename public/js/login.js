@@ -29,7 +29,7 @@ $(document).ready(function() {
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(username, password) {
         // eslint-disable-next-line no-undef
-        $.ajax('/api/login', {
+        $.ajax({
             type: 'POST',
             url: '/api/login',
             username: username,
