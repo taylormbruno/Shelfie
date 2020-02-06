@@ -12,7 +12,12 @@ module.exports = function(app) {
         let user = req.user;
         userID = user.dataValues.id;
         console.log(userID);
-        res.redirect('/home/' + userID);
+        res.send({
+            retStatus: 'Success',
+            redirectTo: '/home/'+userID,
+            msg: 'Directing to users home page.'
+        });
+        // res.redirect('/home/' + userID);
     });
 
     // adds new user successfully
@@ -35,7 +40,7 @@ module.exports = function(app) {
         console.log(req);
         userID = 0;
         req.logout();
-        res.redirect('/login');
+        res.redirect('/');
     });
 
     // used to test if user is logged in or not

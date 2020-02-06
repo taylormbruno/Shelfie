@@ -29,25 +29,21 @@ $(document).ready(function() {
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(username, password) {
         // eslint-disable-next-line no-undef
-        $.ajax({
+        $.post('/api/login', {
             type: 'POST',
-            url: '/api/login',
             username: username,
             password: password,
-            success: function(data, textStatus) {
-                console.log(textStatus);
-                console.log(data.redirect);
-                if (data.redirect) {
-                    // data.redirect contains the string URL to redirect to
-                    window.location.href = data.redirect;
-                }
+        }, function(res) {
+            if (res.retStatus === 'Success') {
+                // data.redirect contains the string URL to redirect to
+                window.location = res.redirectTo;
+                console.log(res.redirectTo);
             }
-        }).then(function() {
             // window.location.replace('/home/:id');
             // If there's an error, log the error
-        })
-            .catch(function(err) {
-                console.log(err);
-            });
+        });
+        // .catch(function(err) {
+        //     console.log(err);
+        // });
     }
 });
