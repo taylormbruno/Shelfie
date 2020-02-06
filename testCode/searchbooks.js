@@ -30,26 +30,33 @@ $(document).ready(function () {
 
             // will have to have a loop to go through all or some (maybe 3-5?) of the response
             for (i = 0; i < response.items.length; i++) {
-                var createImg = $('<img class=bookImg src=' + response.items[i].volumeInfo.imageLinks.smallThumbnail + '>');
+                var smallThumb = '';
+                if ((response.items[i].volumeInfo.imageLinks.smallThumbnail)) {
+                    smallThumb = response.items[i].volumeInfo.imageLinks.smallThumbnail;
+                }
+                else { smallThumb = '#';}
+
+
+                var createImg = $('<img class=bookImg src=' + smallThumb + '>');
                 var bookTitle = response.items[i].volumeInfo.title;
                 var bookAuthor = response.items[i].volumeInfo.authors[0];
                 var bookDesc = response.items[i].volumeInfo.description;
                 var createRadioBtns = $(`<div class='control'>
-            <label class='radio'>
-              <input type='radio' name='answer'>
-              <strong>Have Read</strong>
-            </label>
-            <label class='radio'>
-              <input type='radio' name='answer'>
-              <strong>Want To Read</strong>
-            </label>
-            <label class='radio'>
-              <input type='radio' name='answer'>
-              <strong>Currently Reading</strong>
-            </label>
-          </div>`);
+                <label class='radio'>
+                  <input data-id='`+ i + `' type='radio' name='Read'>
+                  <strong>Have Read</strong>
+                </label>
+                <label class='radio'>
+                  <input data-id='`+ i + `' type='radio' name='Unread'>
+                  <strong>Want To Read</strong>
+                </label>
+                <label class='radio'>
+                  <input data-id='`+ i + `'type='radio' name='Currently'>
+                  <strong>Currently Reading</strong>
+                </label>
+              </div>`);
                 // may have to create individual ids if  it's going to save that info into db?
-                var createSaveBtn = $('<button class="saveBtn">Add to Shelf</button>');
+                var createSaveBtn = $('<button data-id="' + i + '" class="saveBtn">Add to Shelf</button>');
 
                 console.log(bookTitle);
                 console.log(bookAuthor);
@@ -61,14 +68,24 @@ $(document).ready(function () {
                 $('#bookDiv').append(createSaveBtn);
                 $('#bookDiv').append('<br>');
                 $('.saveBtn').addClass('button is-primary');
-                $('#bookDiv').append('<strong>Title:</strong> ' + bookTitle + '<br>');
+                $('#bookDiv').append('<strong>Title:</strong> <span data-id="' + i + '> ' + bookTitle + '</span><br>');
                 $('#bookDiv').append('<strong>Author:</strong> ' + bookAuthor + '<br>');
                 $('#bookDiv').append('<strong>Description:</strong> ' + bookDesc + '<br>');
                 $('#bookDiv').append('<br><br>');
             }
         });
     });
+    // add book to shelf
+    // Nothing firing
+    $(document).click('.saveBtn',function () {
+        console.log('boop');
+        // event.preventDefault();
+        console.log('here');
+        var dataID = this.attr('data-id');
+        console.log(dataID);
+    });
 });
+
 
 // will need an event listener for add to shelf button
 // if thumbnail doesn't pull up gets an undefined error and won't pull up anything---fix for this?
