@@ -2,18 +2,16 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID = 2;
+let userID = 0;
 
 module.exports = function(app) {
     // runs but never ends.
     // eslint-disable-next-line no-undef
     app.post('/api/login', passport.authenticate('local'), function(req, res) {
         // sets users ID to above variable to be used during session
-        console.log(res);
-        console.log('-----------');
-        console.log(req);
         let user = req.user;
         userID = user.dataValues.id;
+        console.log(userID);
         res.redirect('/home/' + userID);
     });
 
@@ -23,7 +21,7 @@ module.exports = function(app) {
             username: req.body.username,
             password: req.body.password 
         }).then(function(res) {
-            res.redirect('/login');
+            res.redirect('/');
         }).catch(function(err) {
             res.status(401).json(err);
         });
