@@ -5,9 +5,13 @@ const db = require('../models');
 
 module.exports=function(app){
 
-    // this route needs to go to signup/sign in page
+    //route goes to sign in page
     app.get('/', (req,res) => {
         res.render('index');
+    });
+    //sign up route
+    app.get('/signup', (req,res) => {
+        res.render('signup');
     });
 
     //this route needs to go to shelf page
