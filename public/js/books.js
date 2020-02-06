@@ -61,9 +61,9 @@ $(document).on('click', '.saveBtn',function () {
   console.log("dataTitle " + dataTitle);
   console.log("dataID"+ dataID);
   let newBook = {
-      book_title: dataTitle,
-      book_id: dataID,
-      book_shelf: 'Unread'
+      title: dataTitle,
+      isbn: dataID,
+      shelf: 'Unread'
   };
   $.ajax('/api/addNewBook',{
       type: 'POST',
