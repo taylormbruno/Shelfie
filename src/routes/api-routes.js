@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID = 0;
+let userID = 1;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -24,11 +24,17 @@ module.exports = function(app) {
     app.post('/api/signup', function(req, res) {
         db.User.create({
             username: req.body.username,
-            password: req.body.password 
-        }).then(function(res) {
-            res.redirect('/');
-        }).catch(function(err) {
-            res.status(401).json(err);
+            password: req.body.password
+        });
+        // res.redirect('/');
+        res.send({
+            retStatus: 'Success',
+            redirectTo: '/',
+            msg: 'Directing to login page.'
+        // });
+        // })
+        // .catch(function(err) {
+        //     res.status(401).json(err);
         });
     });
 

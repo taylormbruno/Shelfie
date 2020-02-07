@@ -27,19 +27,21 @@ $(document).ready(function() {
     // Otherwise we log any errors
     function signUpUser(username, password) {
         $.post('/api/signup', {
+            type: 'POST',
             username: username,
             password: password
-        })
-            .then(function(data) {
-                console.log(data);
-                window.location.replace('/');
-                // If there's an error, handle it by throwing up a bootstrap alert
-            })
-            .catch(handleLoginErr);
+        }, function(res) {
+            console.log(res);
+            // If there's an error, handle it by throwing up a bootstrap alert
+            window.location = res.redirectTo;
+        });
+        // .then(function() {
+        // });
+        // .catch(handleLoginErr);
     }
 
-    function handleLoginErr(err) {
-        $('#alert .msg').text(err.responseJSON);
-        $('#alert').fadeIn(500);
-    }
+    // function handleLoginErr(err) {
+    //     $('#alert .msg').text(err.responseJSON);
+    //     $('#alert').fadeIn(500);
+    // }
 });
