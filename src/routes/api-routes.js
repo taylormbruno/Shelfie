@@ -129,7 +129,7 @@ module.exports = function(app) {
         db.Books.update(
             req.body, {
                 where: {
-                    book_id: req.body.id
+                    id: req.body.id
                 }
             }
         ).then(function(dbShelf) {
