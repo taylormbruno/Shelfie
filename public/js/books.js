@@ -117,7 +117,7 @@ $(document).on('click', '.delete', function () {
     success: function (result) {
       console.log("deleted book", deleteId);
       // Reload the page to get the updated list
-      // location.reload();
+      location.reload();
     }
   })
 });

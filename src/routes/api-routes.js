@@ -141,7 +141,7 @@ module.exports = function(app) {
     app.delete('/api/remove/:id', function(req, res) {
         db.Books.destroy({
             where: {
-                id: req.params.id
+                id: parseInt(req.params.id)
             }
         }).then(function(dbDelete){
             res.json(dbDelete);
