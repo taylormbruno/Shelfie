@@ -67,6 +67,10 @@ module.exports = function(app) {
     // creates a new book 
     // returns 'created_at' doesn't have a default value
     app.post('/api/addNewBook', function(req, res) {
+        console.log('------------------------');
+        console.log(userID);
+        console.log('------------------------');
+
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
