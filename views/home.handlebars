@@ -1,16 +1,15 @@
+<!-- .hero -->
+<section class='hero has-background-black'>
+    <div class='hero-body'>
+        <div class='container'>
+            <div class='has-text-right'>
+                <h3 class='subtitle has-text-right has-text-primary'>
+                    {{Username}}
+                </h3>
+                <button class='button is-small is-primary' id='logoutBtn'>Logout</button>
+            </div>
 
-    <!-- .hero -->
-    <section class='hero has-background-black'>
-        <div class='hero-body'>
-           <div class='container'>
-                <div class='has-text-right'>
-                    <h3 class='subtitle has-text-right has-text-primary'>
-                        {{Username}}
-                    </h3>
-                    <button class='button is-small is-primary' id='logoutBtn'>Logout</button>
-                </div>
-                              
-                <span class='has-text-centered'>
+            <span class='has-text-centered'>
                 <h1 class='title has-text-light'>
                     Shelfie
                 </h1>
@@ -19,72 +18,91 @@
                 </p>
             </span>
 
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<!-- /.hero -->
+<!-- .section -->
+<section class='section'>
+    <div class=' container'>
+        <div class='columns is-centered'>
+            <div class='column is-half center'>
+                <!-- FORM HERE -->
+                <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
+                <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <div class="columns">
+            <div class="column" id="bookDiv">
             </div>
         </div>
-    </section>
-    <br>
-    <br>
-    <!-- /.hero -->
-    <!-- .section -->
-    <section class='section'>
-        <div class=' container'>
-            <div class='columns is-centered'>
-                <div class='column is-half center'>
-                    <!-- FORM HERE -->
-                    <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
-                    <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
+        <div class='container'>
+            <div class='columns'>
+                <div class='column'>
+                    <div class='notification is-primary'>
+                        <h1 class='title is-size-4 center'>
+                            <a href='#'>BOOKS I WANT TO READ</a> </h1>
+                        <br>
+                        <ol>
+                            {{#each Unread}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Current'>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                                Delete
+                            </button>
+                            {{/each}}
+                        </ol>
+                    </div>
                 </div>
+                <div class='column'>
+                    <div class='notification is-primary'>
+                        <h1 class='title is-size-4 center'>
+                            <a href='#'>BOOKS I'VE READ</a>
+                        </h1>
+                        <br>
+                        <ol>
+                            {{#each Read}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Unread'>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                                Delete
+                            </button>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </div>
+                <div class='column'>
+                    <div class='notification is-primary'>
+                        <h1 class='title is-size-4 center'>
+                            <a href='#'>BOOKS I'M CURRENTLY READING</a>
+                        </h1>
+                        <br>
+                        <ol>
+                            {{#each Current}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Read'>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                               Delete
+                            </button>
+                            {{/each}}
+                        </ol>
 
-            </div>
-            <br>
-            <br>
-            <div class="columns">
-                <div class="column" id="bookDiv">
-                </div>
-            </div>
-            <div class='container'>
-                <div class='columns'>
-                    <div class='column'>
-                        <div class='notification is-primary'>
-                                <a href='#'>BOOKS I WANT TO READ</a> </h1>
-                            <br>
-                            <ol>
-                                {{#each Unread}}
-                                    <p data-id={{book_id}}> {{book_title}} </p>
-                                {{/each}}
-                            </ol>
-                        </div>
-                    </div>
-                    <div class='column'>
-                        <div class='notification is-primary'>
-                            <h1 class='title is-size-4 center'>
-                                <a href='#'>BOOKS I'VE READ</a>
-                            </h1>
-                            <br>
-                            <ol>
-                                {{#each Read}}
-                                    <p data-id={{book_id}}> {{book_title}} </p>
-                                {{/each}}
-                            </ol>
-                        </div>
-                    </div>
-                    <div class='column'>
-                        <div class='notification is-primary'>
-                            <h1 class='title is-size-4 center'>
-                                <a href='#'>BOOKS I'M CURRENTLY READING</a>
-                            </h1>
-                            <br>
-                            <ol>
-                                {{#each Current}}
-                                    <p data-id={{book_id}}> {{book_title}} </p>
-                                {{/each}}
-                            </ol>
-
-                        </div>
                     </div>
                 </div>
             </div>
-    </section>
-    <!-- /.section -->
+        </div>
+</section>
+<!-- /.section -->
 <script type="text/javascript" src="../js/members.js"></script>
-    <script src="../js/books.js"></script>
+<script src="../js/books.js"></script>
