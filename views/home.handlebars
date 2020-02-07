@@ -64,34 +64,32 @@
                 <div class='shelf notification center'>
                     <h1>BOOKS I WANT TO READ</h1>
                     <br>
-                    <ol>
-                            {{#each Unread}}
-                            <p data-id={{id}}> {{book_title}} </p>
+                    {{#each Unread}}
+                        <h3 data-id={{id}}> {{book_title}} 
                             <button class="change" data-newRead='Current' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
                                 Delete
                             </button>
-                            {{/each}}
-                        </ol>
+                        </h3>
+                    {{/each}}
                 </div>
             </div>
             <div class='column'>
                 <div class='shelf notification center'>
                     <h1>BOOKS I'VE READ</h1>
                     <br>
-                    <ol>
-                            {{#each Read}}
-                            <p data-id={{id}}> {{book_title}} </p>
+                    {{#each Read}}
+                        <h3 data-id={{id}}> {{book_title}} 
                             <button class="change" data-newRead='Unread' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
                                 Delete
                             </button>
-                            {{/each}}
-                        </ol>
+                        </h3>
+                    {{/each}}
                 </div>
             </div>
             <div class='column'>
@@ -100,18 +98,16 @@
                         BOOKS I'M CURRENTLY READING
                     </h1>
                     <br>
-                    <ol>
-                            {{#each Current}}
-                            <p data-id={{id}}> {{book_title}} </p>
+                    {{#each Current}}
+                        <h3 data-id={{id}}> {{book_title}} 
                             <button class="change" data-newRead='Read' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
                                Delete
                             </button>
-                            {{/each}}
-                        </ol>
-
+                        </h3>
+                    {{/each}}
                 </div>
             </div>
         </div>
