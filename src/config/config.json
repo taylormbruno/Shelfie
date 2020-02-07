@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "yourRootPassword",
+    "password": "Marie2009",
     "database": "shelfie_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
