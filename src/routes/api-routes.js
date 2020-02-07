@@ -14,9 +14,10 @@ module.exports = function(app) {
         console.log(userID);
         res.send({
             retStatus: 'Success',
-            redirectTo: '/home/'+userID,
+            redirectTo: '/home/'+ userID,
             msg: 'Directing to users home page.'
         });
+        return userID;
         // res.redirect('/home/' + userID);
     });
 
@@ -24,11 +25,17 @@ module.exports = function(app) {
     app.post('/api/signup', function(req, res) {
         db.User.create({
             username: req.body.username,
-            password: req.body.password 
-        }).then(function(res) {
-            res.redirect('/');
-        }).catch(function(err) {
-            res.status(401).json(err);
+            password: req.body.password
+        });
+        // res.redirect('/');
+        res.send({
+            retStatus: 'Success',
+            redirectTo: '/',
+            msg: 'Directing to login page.'
+        // });
+        // })
+        // .catch(function(err) {
+        //     res.status(401).json(err);
         });
     });
 
@@ -61,11 +68,15 @@ module.exports = function(app) {
     // creates a new book 
     // returns 'created_at' doesn't have a default value
     app.post('/api/addNewBook', function(req, res) {
+        console.log('------------------------');
+        console.log('~*~*~*~*~*~*~*~*~*~* ' + userID);
+        console.log('------------------------');
+
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
             book_shelf: req.body.shelf,
-            userId: userID
+            UserId: JSON.stringify(userID)
         }).then(function(dbBooks) {
             console.log(dbBooks);
             res.json(dbBooks);
@@ -130,7 +141,7 @@ module.exports = function(app) {
     app.delete('/api/remove/:id', function(req, res) {
         db.Books.destroy({
             where: {
-                book_id: req.params.id
+                id: parseInt(req.params.id)
             }
         }).then(function(dbDelete){
             res.json(dbDelete);
