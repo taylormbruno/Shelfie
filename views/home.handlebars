@@ -65,10 +65,16 @@
                     <h1>BOOKS I WANT TO READ</h1>
                     <br>
                     <ol>
-                        {{#each Unread}}
-                        <p data-id={{book_id}}> {{book_title}} </p>
-                        {{/each}}
-                    </ol>
+                            {{#each Unread}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Current' data-id={{id}}>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                                Delete
+                            </button>
+                            {{/each}}
+                        </ol>
                 </div>
             </div>
             <div class='column'>
@@ -76,10 +82,16 @@
                     <h1>BOOKS I'VE READ</h1>
                     <br>
                     <ol>
-                        {{#each Read}}
-                        <p data-id={{book_id}}> {{book_title}} </p>
-                        {{/each}}
-                    </ol>
+                            {{#each Read}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Unread' data-id={{id}}>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                                Delete
+                            </button>
+                            {{/each}}
+                        </ol>
                 </div>
             </div>
             <div class='column'>
@@ -89,30 +101,38 @@
                     </h1>
                     <br>
                     <ol>
-                        {{#each Current}}
-                        <p data-id={{book_id}}> {{book_title}} </p>
-                        {{/each}}
-                    </ol>
+                            {{#each Current}}
+                            <p data-id={{id}}> {{book_title}} </p>
+                            <button class="change" data-newRead='Read' data-id={{id}}>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                               Delete
+                            </button>
+                            {{/each}}
+                        </ol>
 
                 </div>
             </div>
         </div>
     </div>
-        <div class='columns is-centered'>
+
+    {{!-- old CSS  --}}
+        {{!-- <div class='columns is-centered'>
             <div class='column is-half center'>
                 <!-- FORM HERE -->
                 <input id='searchBar' class='input is-rounded' type='text' placeholder='Search Books'>
                 <input class='button is-primary is-light' type='submit' value='Submit' id='searchBtn'></button>
-            </div>
+            </div> --}}
 
-        </div>
+        {{!-- </div>
         <br>
         <br>
         <div class="columns">
             <div class="column" id="bookDiv">
             </div>
-        </div>
-        <div class='container'>
+        </div> --}}
+        {{!-- <div class='container'>
             <div class='columns'>
                 <div class='column'>
                     <div class='notification is-primary'>
@@ -131,8 +151,8 @@
                             {{/each}}
                         </ol>
                     </div>
-                </div>
-                <div class='column'>
+                </div> --}}
+                {{!-- <div class='column'>
                     <div class='notification is-primary'>
                         <h1 class='title is-size-4 center'>
                             <a href='#'>BOOKS I'VE READ</a>
@@ -150,8 +170,8 @@
                             {{/each}}
                         </ol>
                     </div>
-                </div>
-                <div class='column'>
+                </div> --}}
+                {{!-- <div class='column'>
                     <div class='notification is-primary'>
                         <h1 class='title is-size-4 center'>
                             <a href='#'>BOOKS I'M CURRENTLY READING</a>
@@ -169,10 +189,10 @@
                             {{/each}}
                         </ol>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div> --}}
+                {{!-- </div> --}}
+            {{!-- </div> --}}
+        {{!-- </div> --}}
 </section>
 <!-- /.section -->
 <script type="text/javascript" src="../js/members.js"></script>
