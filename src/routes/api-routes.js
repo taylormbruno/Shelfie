@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID = 1;
+let userID = 0;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -14,9 +14,10 @@ module.exports = function(app) {
         console.log(userID);
         res.send({
             retStatus: 'Success',
-            redirectTo: '/home/'+userID,
+            redirectTo: '/home/'+ userID,
             msg: 'Directing to users home page.'
         });
+        return userID;
         // res.redirect('/home/' + userID);
     });
 
@@ -68,19 +69,16 @@ module.exports = function(app) {
     // returns 'created_at' doesn't have a default value
     app.post('/api/addNewBook', function(req, res) {
         console.log('------------------------');
-        console.log(userID);
+        console.log('~*~*~*~*~*~*~*~*~*~* ' + userID);
         console.log('------------------------');
 
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
             book_shelf: req.body.shelf,
-            userId: userID
-        }).then(function(err, dbBooks) {
-            console.log(dbBooks);
-            if(err.message == 'Query was empty'){
-                console.log('There is no changes in the update, lets continue the progress...');
-            }
+            UserId: JSON.stringify(userID)
+        }).then(function(dbBooks) {
+           
             res.json(dbBooks);
         });
     });
