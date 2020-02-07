@@ -76,8 +76,11 @@ module.exports = function(app) {
             book_id: req.body.isbn,
             book_shelf: req.body.shelf,
             userId: userID
-        }).then(function(dbBooks) {
+        }).then(function(err, dbBooks) {
             console.log(dbBooks);
+            if(err.message == 'Query was empty'){
+                console.log('There is no changes in the update, lets continue the progress...');
+            }
             res.json(dbBooks);
         });
     });
@@ -128,7 +131,7 @@ module.exports = function(app) {
         db.Books.update(
             req.body, {
                 where: {
-                    book_id: req.body.id
+                    id: req.body.id
                 }
             }
         ).then(function(dbShelf) {

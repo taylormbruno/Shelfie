@@ -51,7 +51,7 @@
                         <ol>
                             {{#each Unread}}
                             <p data-id={{id}}> {{book_title}} </p>
-                            <button class="change" data-newRead='Current'>
+                            <button class="change" data-newRead='Current' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
@@ -70,7 +70,7 @@
                         <ol>
                             {{#each Read}}
                             <p data-id={{id}}> {{book_title}} </p>
-                            <button class="change" data-newRead='Unread'>
+                            <button class="change" data-newRead='Unread' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
@@ -89,7 +89,7 @@
                         <ol>
                             {{#each Current}}
                             <p data-id={{id}}> {{book_title}} </p>
-                            <button class="change" data-newRead='Read'>
+                            <button class="change" data-newRead='Read' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
