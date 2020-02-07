@@ -37,8 +37,8 @@
     "url": "https://github.com/taylormbruno/project2/issues"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "12.14.1",
+    "npm": "6.13.4"
   },
   "homepage": "https://github.com/taylormbruno/project2#readme"
 }

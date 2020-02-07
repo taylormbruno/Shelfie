@@ -78,7 +78,7 @@ module.exports = function(app) {
             book_shelf: req.body.shelf,
             UserId: JSON.stringify(userID)
         }).then(function(dbBooks) {
-           
+            console.log(dbBooks);
             res.json(dbBooks);
         });
     });

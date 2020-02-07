@@ -20,11 +20,11 @@ var db = require('./src/models');
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
 // eslint-disable-next-line no-undef
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: false }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
