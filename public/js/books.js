@@ -52,8 +52,6 @@ $(document).ready(function () {
             }
 
         });
-
-
     });
 });
 // add book to shelf
