@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     // eslint-disable-next-line no-undef
     $('#searchBtn').click(function () {
+        
         console.log('click');
         var searchInput = $('#searchBar').val().trim();
         console.log('searchInput' + searchInput);
