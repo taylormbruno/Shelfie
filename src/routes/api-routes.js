@@ -2,7 +2,7 @@
 const passport = require('../config/passport.js');
 const db = require('../models');
 
-let userID = 0;
+let userID = 1;
 
 module.exports = function(app) {
     // runs but never ends.
@@ -32,10 +32,6 @@ module.exports = function(app) {
             retStatus: 'Success',
             redirectTo: '/',
             msg: 'Directing to login page.'
-        // });
-        // })
-        // .catch(function(err) {
-        //     res.status(401).json(err);
         });
     });
 
@@ -45,7 +41,7 @@ module.exports = function(app) {
         console.log(res);
         console.log('-----------');
         console.log(req);
-        userID = 0;
+        userID = 1;
         req.logout();
         res.redirect('/');
     });
@@ -65,8 +61,7 @@ module.exports = function(app) {
         });
     });
 
-    // creates a new book 
-    // returns 'created_at' doesn't have a default value
+    // creates a new book - adds book to db twice
     app.post('/api/addNewBook', function(req, res) {
         console.log('------------------------');
         console.log('~*~*~*~*~*~*~*~*~*~* ' + userID);
@@ -76,14 +71,19 @@ module.exports = function(app) {
             book_title: req.body.title,
             book_id: req.body.isbn,
             book_shelf: req.body.shelf,
-            UserId: JSON.stringify(userID)
-        }).then(function(dbBooks) {
-            console.log(dbBooks);
-            res.json(dbBooks);
+            UserId: JSON.parse(req.body.usID)
         });
+        // res.send({
+        //     retStatus: 'Success',
+        //     redirectTo: '/home/' + userID,
+        //     msg: 'Directing to home page.'
+        // });
+        
+        // // .then(function() {
+        res.redirect('/home/' + userID);
+        // });
     });
 
-    // unread book shelf finds return empty arrays -- no errors
     app.get('/api/unread', function(req, res) {
         db.Books.findAll({
             subQuery: false,
