@@ -44,13 +44,10 @@ body{
 	color:#FFFFFF;
 	border-color:#FFFFFF;
 	}
-/* @media all and (max-width:30em){
-	a.button5{
-	display:block;
-	margin:0.4em auto;} */
 
 .shelf{
 	background-color: #4ecdc4;
 	color: #ffffff;
 	display: inline-block;
+	width: 100%;
 }
