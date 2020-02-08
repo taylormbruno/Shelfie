@@ -35,9 +35,8 @@ module.exports = function(app) {
         });
     });
 
-    // have not figured out how to test with postman
     app.get('/logout', function(req, res) {
-        // resets userID to 0 when logging out
+        // resets userID to 1 when logging out
         console.log(res);
         console.log('-----------');
         console.log(req);
@@ -61,7 +60,6 @@ module.exports = function(app) {
         });
     });
 
-    // creates a new book - adds book to db twice
     app.post('/api/addNewBook', function(req, res) {
         console.log('------------------------');
         console.log('~*~*~*~*~*~*~*~*~*~* ' + userID);
@@ -73,15 +71,7 @@ module.exports = function(app) {
             book_shelf: req.body.shelf,
             UserId: userID
         });
-        // res.send({
-        //     retStatus: 'Success',
-        //     redirectTo: '/home/' + userID,
-        //     msg: 'Directing to home page.'
-        // });
-        
-        // // .then(function() {
         res.redirect('/home/' + userID);
-        // });
     });
 
     app.get('/api/unread', function(req, res) {
