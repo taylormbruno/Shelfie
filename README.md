@@ -1,4 +1,5 @@
 # Shelfie
+![Image description](/public/images/shelfie.png)
 
 # Description
 Shelfie is a virtual library app that allows users to digitally organize and catalog their books. Users can search for books they want to read, have read, or are currently reading and add them to corresponding lists called "shelves". Books can be moved from shelf to shelf at user's discretion. 
@@ -14,9 +15,10 @@ Express.js
 Handlebars
 Bulma CSS Framework
 MVC Design Pattern
+Passport.js
 
 # Authors
-Abigail DeVries, Debbie Siles, Taylor Bruno, Leah Barnes
+Abigail DeVries, Debbie Reategui Siles, Taylor Bruno, Leah Barnes
 
 # Deployed Application
 https://aqueous-refuge-48419.herokuapp.com/
