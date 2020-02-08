@@ -66,12 +66,12 @@ module.exports = function(app) {
         console.log('------------------------');
         console.log('~*~*~*~*~*~*~*~*~*~* ' + userID);
         console.log('------------------------');
-
+        userID = JSON.parse(req.body.usID);
         db.Books.create({
             book_title: req.body.title,
             book_id: req.body.isbn,
             book_shelf: req.body.shelf,
-            UserId: JSON.parse(req.body.usID)
+            UserId: userID
         });
         // res.send({
         //     retStatus: 'Success',
