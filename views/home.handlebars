@@ -1,21 +1,21 @@
 <!-- .hero -->
 <section class='hero'>
-    <div class='header-color hero-body'>
+    <div class='random header-color hero-body'>
         <div class='container'>
             <div class='has-text-right'>
-                <h3 id='username' class='subtitle '>
-                    Hello, {{Username}}!
-                </h3>
                 <a class='button is-small is-primary' id='logoutBtn'
                     style="border-color:#FFFFFF; background-color:rgba(0,0,0,0); color:#FFFFFF">Logout</a>
+                {{!-- <h3 id='username' class='subtitle '>
+                    Hello, {{Username}}!
+                </h3> --}}
             </div>
 
             <span class='has-text-centered'>
                 <img class="has-image-centered" src="../images/shelfie.png" alt="shelfie"
                     style="width:250px;height:250px;">
-                <p class='subtitle has-text-centered has-text-light'>
-                    Your personal virtual library!
-                </p>
+                <h3 id='username' class='subtitle '>
+                    Hello, {{Username}}!
+                </h3>
             </span>
 
         </div>
@@ -47,27 +47,11 @@
         <div class='columns'>
             <div class='column'>
                 <div class='shelf notification center'>
-                    <h1 class='center'>FUTURE READS</h1>
+                    <h1 class='center'>UNREAD BOOKS</h1>
                     <br>
                     {{#each Unread}}
                         <h3 data-id={{id}}> {{book_title}} 
                             <button class="change" data-newRead='Current' data-id={{id}}>
-                                Move
-                            </button>
-                            <button class="delete" data-id={{id}}>
-                                Delete
-                            </button>
-                        </h3>
-                    {{/each}}
-                </div>
-            </div>
-            <div class='column'>
-                <div class='shelf notification center'>
-                    <h1 class='center'>BOOKS I'VE READ</h1>
-                    <br>
-                    {{#each Read}}
-                        <h3 data-id={{id}}> {{book_title}} 
-                            <button class="change" data-newRead='Unread' data-id={{id}}>
                                 Move
                             </button>
                             <button class="delete" data-id={{id}}>
@@ -90,6 +74,22 @@
                             </button>
                             <button class="delete" data-id={{id}}>
                                Delete
+                            </button>
+                        </h3>
+                    {{/each}}
+                </div>
+            </div>
+            <div class='column'>
+                <div class='shelf notification center'>
+                    <h1 class='center'>BOOKS I'VE READ</h1>
+                    <br>
+                    {{#each Read}}
+                        <h3 data-id={{id}}> {{book_title}} 
+                            <button class="change" data-newRead='Unread' data-id={{id}}>
+                                Move
+                            </button>
+                            <button class="delete" data-id={{id}}>
+                                Delete
                             </button>
                         </h3>
                     {{/each}}
