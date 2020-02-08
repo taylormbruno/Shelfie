@@ -14,9 +14,6 @@ var PORT = process.env.PORT || 8080;
 var db = require('./src/models');
 
 // Sets up the Express app to handle data parsing
-
-// Static directory
-
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -35,7 +32,6 @@ app.set('view engine', 'handlebars');
 // eslint-disable-next-line no-undef
 require('./src/routes/api-routes')(app);
 // eslint-disable-next-line no-undef
-// throwing error
 require('./src/routes/html-routes.js')(app);
 
 // Syncing our database and logging a message to the user upon success
