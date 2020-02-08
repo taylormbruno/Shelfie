@@ -41,9 +41,7 @@ module.exports = function(sequelize, DataTypes) {
                 foreignKey: 'UserId'
             }
         );
-        
     };
-
     return Books;
 };
 
