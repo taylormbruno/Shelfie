@@ -14,6 +14,7 @@ Express.js
 Handlebars
 Bulma CSS Framework
 MVC Design Pattern
+Google Books API
 
 # Authors
 Abigail DeVries, Debbie Siles, Taylor Bruno, Leah Barnes
